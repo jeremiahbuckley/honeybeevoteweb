@@ -1,0 +1,23 @@
+Voter-Detail
+
+
+<form name="voterInput">
+	<label>
+		Voter name:
+		<input ng-model="voterDetail.name" type="text" required>
+	</label>
+	<br/>
+	<label>
+		Voter password:
+		<input ng-model="voterDetail.password" type="text" required>
+	</label>
+	<br/>
+	<button ng-click="voterDetail.save()">
+		Save
+	</button>
+</form>
+
+	<div class="row">
+	    <pre>{{voterDetail.voters}}</pre>
+		<!-- <pre>{{$ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp | json}}</pre> -->
+	</div>
