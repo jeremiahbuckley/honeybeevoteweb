@@ -1,6 +1,18 @@
 Voters
 
+
+<div ng-repeat="voter in voters.voters">
+	<span>{{voter.name}}</span>
+	<span>{{voter.password}}</span>
+	<button ng-click="voters.delete(voter._id)">
+		Delete Voter
+	</button>
+</div>
+
+<button ng-click="voters.addVoter()">
+	Add Voter
+</button>
+
 	<div class="row">
 	    <pre>{{voters.voters}}</pre>
-		<!-- <pre>{{$ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp | json}}</pre> -->
 	</div>

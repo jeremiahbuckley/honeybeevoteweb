@@ -1,9 +1,9 @@
 'use strict';
 
-import angular, service from 'angular';
+import angular from 'angular';
 
 import VoterDetailController from './voter-detail.controller.js';
 
-export default angular.module('components.voterDetail', [service])
+export default angular.module('components.voterDetail', [])
   .controller('VoterDetailController', VoterDetailController)
   .name;
