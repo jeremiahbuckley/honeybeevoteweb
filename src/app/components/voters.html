@@ -1,14 +1,15 @@
-Voters
-
 <div class="container">
 	<div class="row">
-		<div class="col-xs-2">Name</div>
+		Voters
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Name</div>
 		<div class="col-xs-2">Password</div>
 		<div class="col-xs-2">Actions</div>
 	</div>
 	<div ng-repeat="voter in voters.voters">
 		<div class="row">
-			<div class="col-xs-2">{{voter.name}}</div>
+			<div class="col-xs-3">{{voter.name}}</div>
 			<div class="col-xs-2">{{voter.password}}</div>
 			<div class="col-xs-2">
 				<button ng-click="voters.delete(voter._id)">
@@ -17,11 +18,13 @@ Voters
 			</div>
 		</div>
 	</div>
+	<div class="row">
+		<button ng-click="voters.addVoter()">
+			Add Voter
+		</button>
+	</div>
 </div>
 
-<button ng-click="voters.addVoter()">
-	Add Voter
-</button>
 
 	<div class="row">
 	    <pre>{{voters.voters}}</pre>

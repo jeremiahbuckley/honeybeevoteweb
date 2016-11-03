@@ -3,16 +3,9 @@
 export default class CandidatesService {
   constructor($resource) {
     this.$resource = $resource;
-    const res = $resource('http://localhost:8000/candidates');
+    const res = $resource('http://localhost:8000/candidates/:id');
     return res;
   }
 }
 
-// angular
-//   .module('app')
-//   .factory('candidates', ['$resource',
-//     function ($resource) {
-//       return $resource('localhost:8000/candidates', {}, {
-//       });
-//     }
-//   ]);
+CandidatesService.$inject = ['$resource'];

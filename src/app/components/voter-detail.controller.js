@@ -26,7 +26,6 @@ export default class VotersController {
   cancel() {
     this.$state.go("voters");
   }
-
 }
 
 VotersController.$inject = ['VotersService', '$log', '$state'];
