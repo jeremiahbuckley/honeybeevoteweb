@@ -16,6 +16,10 @@ import voterDetail from './app/components/voter-detail.module.js';
 import candidateDetail from './app/components/candidate-detail.module.js';
 import coreShared from './app/core.shared.module.js';
 
+import 'jquery';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.min.js';
+
 import './index.scss';
 
 angular

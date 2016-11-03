@@ -1,9 +1,12 @@
 # Honeybee Voting Web front-end
 
 ## Frameworks and Tools:
+- Bootstrap
 - Angular 1.3
 - ES6
+- Babel
 - Webpack
+- ESLint
 - Gulp
 
 ## What works/half-works at the moment

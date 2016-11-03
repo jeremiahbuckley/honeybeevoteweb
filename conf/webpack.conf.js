@@ -44,6 +44,14 @@ module.exports = {
         loaders: [
           'html'
         ]
+      },
+      {
+        test: /\.(eot|woff|woff2|ttf|png|jpe?g|gif)(\?\S*)?$/,
+        loader: 'url?limit=100000@name=[name][ext]'
+      },
+      {
+        test: /\.svg(\?\S*)?$/,
+        loader: 'url?mimetype=image/svg+xml'
       }
     ]
   },
@@ -52,6 +60,11 @@ module.exports = {
     new webpack.NoErrorsPlugin(),
     new HtmlWebpackPlugin({
       template: conf.path.src('index.html')
+    }),
+    new webpack.ProvidePlugin({   
+        jQuery: 'jquery',
+        $: 'jquery',
+        jquery: 'jquery'
     })
   ],
   postcss: () => [autoprefixer],
