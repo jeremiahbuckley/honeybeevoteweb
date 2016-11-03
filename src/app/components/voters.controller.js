@@ -8,7 +8,9 @@ export default class ElectionsController {
   }
 
   delete(_id) {
-    this.VotersService.remove({id: _id});
+    this.VotersService.remove({id: _id}, () => {
+      this.voters = this.VotersService.query();
+    });
   }
 
   addVoter() {

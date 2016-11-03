@@ -11,9 +11,16 @@ export default class VotersController {
   }
 
   save() {
-    this.$log.log('{this.name} {this.password}');
-    this.VotersService.save({name: this.name, password: this.password});
-    this.$state.go("voters");
+    this.$log.log(`${this.name} ${this.password}`);
+
+    const self = this;
+    this.VotersService.save({name: this.name, password: this.password}).$promise.then((result, err) => {
+      if (err) {
+        self.$log.error(err);
+      } else {
+        self.$state.go("voters");
+      }
+    });
   }
 
   cancel() {
