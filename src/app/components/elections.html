@@ -1,21 +1,29 @@
-Elections
-<br/>
-{{'yet' + '!!!'}}
-<br/>
-something_{{elections.jbtest}}_x
-<br/>
-{{$ctrl.phone.description}}
-<br/>
+<div class="container">
+	<div class="row">
+		Elections
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Name</div>
+		<div class="col-xs-3">Actions</div>
+	</div>
+	<div ng-repeat="election in elections.elections">
+		<div class="row">
+			<div class="col-xs-3">{{election.name}}</div>
+			<div class="col-xs-3">
+				<button ng-click="elections.delete(election._id)">
+					Delete Election
+				</button>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<button ng-click="elections.addCandidate()">
+			Add Election
+		</button>
+	</div>
+</div>
+
 
 	<div class="row">
 	    <pre>{{elections.elections}}</pre>
-		<!-- <pre>{{$ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp | json}}</pre> -->
-	</div>
-	<div class="row">
-	    <pre>{{elections.voters}}</pre>
-		<!-- <pre>{{$ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp | json}}</pre> -->
-	</div>
-	<div class="row">
-	    <pre>{{elections.candidates}}</pre>
-		<!-- <pre>{{$ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp | json}}</pre> -->
 	</div>

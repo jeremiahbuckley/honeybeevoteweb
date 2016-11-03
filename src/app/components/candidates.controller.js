@@ -1,6 +1,6 @@
 'use strict';
 
-export default class ElectionsController {
+export default class CandidatesController {
   constructor(CandidatesService, $state) {
     this.CandidatesService = CandidatesService;
     this.candidates = CandidatesService.query();
@@ -17,4 +17,4 @@ export default class ElectionsController {
     this.$state.go("candidate-detail");
   }}
 
-ElectionsController.$inject = ['CandidatesService', '$state'];
+CandidatesController.$inject = ['CandidatesService', '$state'];

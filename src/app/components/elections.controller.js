@@ -1,18 +1,21 @@
 'use strict';
 
 export default class ElectionsController {
-  constructor(ElectionsService, VotersService, CandidatesService) {
-    this.name = 'World';
-    this.jbtest = "112";
+  constructor(ElectionsService, $state) {
     this.ElectionsService = ElectionsService;
     this.elections = ElectionsService.query();
-    this.voters = VotersService.query();
-    this.candidates = CandidatesService.query();
+    this.$state = $state;
   }
 
-  changeName() {
-    this.name = 'angular-tips';
+  delete(_id) {
+    this.ElectionsService.remove({id: _id}, () => {
+      this.elections = this.ElectionsService.query();
+    });
+  }
+
+  addCandidate() {
+    this.$state.go("election-detail");
   }
 }
 
-ElectionsController.$inject = ['ElectionsService', 'VotersService', 'CandidatesService'];
+ElectionsController.$inject = ['ElectionsService', '$state'];
