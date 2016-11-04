@@ -15,6 +15,11 @@ export default class CandidatesController {
 
   addCandidate() {
     this.$state.go("candidate-detail");
-  }}
+  }
+
+  vote(id) {
+    this.$state.go("candidate-vote", {candidateId: id});
+  }
+}
 
 CandidatesController.$inject = ['CandidatesService', '$state'];

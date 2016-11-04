@@ -13,8 +13,25 @@
 			<div class="col-xs-2">{{candidate.value}}</div>
 			<div class="col-xs-3">
 				<button ng-click="candidates.delete(candidate._id)">
-					Delete Candidate
+					Delete
 				</button>
+			</div>
+			<div class="col-xs-3">
+				<button ng-click="candidates.vote(candidate._id)">
+					Vote
+				</button>
+			</div>
+		</div>
+		<div class = "row">
+			<div class="col-xs-5">Votes for {{candidate.name}}:</div>
+		</div>
+		<div ng-repeat="vote in candidate.votes">
+			<div class = "row">
+				<label class="col-xs-4">{{vote.voterId}}</label>
+				<label class="col-xs-1">{{vote.value}}</label>
+				<label class="col-xs-3">{{vote.starttime | date: 'MM/dd/yyyy h:mma'}}</label>
+				<label class="col-xs-3">{{vote.endtime | date: 'MM/dd/yyyy h:mma'}}</label>
+				<label class="col-xs-1">{{vote.expired}}</label>				
 			</div>
 		</div>
 	</div>

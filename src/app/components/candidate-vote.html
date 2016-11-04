@@ -1,0 +1,42 @@
+<div class="container">
+	<div class="row">
+		CandidateVote
+	</div>
+	<form name="candidateVoteInput">
+		<div class="row">
+			<label class="col-xs-4">{{candidateVote.candidateId}}</label>
+			<div class="col-xs-1"></div>
+			<label class="col-xs-3">{{candidateVote.candidateName}}</label>
+		</div>
+		<div ng-repeat="vote in candidateVote.votes">
+			<div class = "row">
+				<label class="col-xs-4">{{vote.voterId}}</label>
+				<label class="col-xs-1">{{vote.value}}</label>
+				<label class="col-xs-3">{{vote.starttime | date: 'MM/dd/yyyy h:mma'}}</label>
+				<label class="col-xs-3">{{vote.endtime | date: 'MM/dd/yyyy h:mma'}}</label>
+				<label class="col-xs-1">{{vote.expired}}</label>				
+			</div>
+		</div>
+		<div class="row">
+		    <select name="voterSelect" class="col-xs-3" 
+		    	ng-options="voter.name for voter in candidateVote.voters track by voter._id"
+      			ng-model="candidateVote.selectedVoter"">
+		    </select>
+    		<label class="col-xs-3">Value</label>
+			<input class="col-xs-4" ng-model="candidateVote.value" type="text" required>
+		</div>
+		<div class="row">
+			<button ng-click="candidateVote.save()">
+				Save
+			</button>
+			<button ng-click="candidateVote.cancel()">
+				Cancel
+			</button>
+		</div>
+	</form>
+</div>
+
+	<div class="row">
+	    <pre>{{candidateVoteDetail.candidates}}</pre>
+		<!-- <pre>{{$ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp | json}}</pre> -->
+	</div>

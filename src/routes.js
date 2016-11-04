@@ -6,6 +6,7 @@ import candidatesController from './app/components/candidates.controller.js';
 import electionDetailController from './app/components/election-detail.controller.js';
 import voterDetailController from './app/components/voter-detail.controller.js';
 import candidateDetailController from './app/components/candidate-detail.controller.js';
+import candidateVoteController from './app/components/candidate-vote.controller.js';
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -52,6 +53,13 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: './app/components/candidate-detail.html',
       controller: candidateDetailController,
       controllerAs: 'candidateDetail'
+    })
+    .state('candidate-vote', {
+      url: '/candidate-vote',
+      templateUrl: './app/components/candidate-vote.html',
+      controller: candidateVoteController,
+      controllerAs: 'candidateVote',
+      params: {candidateId: null}
     })
     ;
 }
