@@ -5,13 +5,13 @@
 	<form name="candidateInput">
 		<div class="row">
 			<label class="col-xs-3">Candidate name:</label>
-			<input class="col-xs-4" ng-model="candidateDetail.name" type="text" required>
+			<input class="col-xs-4" ng-model="candidateAdd.name" type="text" required>
 		</div>
 		<div class="row">
-			<button ng-click="candidateDetail.save()">
+			<button ng-click="candidateAdd.save()">
 				Save
 			</button>
-			<button ng-click="candidateDetail.cancel()">
+			<button ng-click="candidateAdd.cancel()">
 				Cancel
 			</button>
 		</div>
@@ -19,6 +19,6 @@
 </div>
 
 	<div class="row">
-	    <pre>{{candidateDetail.candidates}}</pre>
+	    <pre>{{candidateAdd.candidates}}</pre>
 		<!-- <pre>{{$ctrl.phones | filter:$ctrl.query | orderBy:$ctrl.orderProp | json}}</pre> -->
 	</div>

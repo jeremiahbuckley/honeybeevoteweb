@@ -14,7 +14,7 @@ export default class CandidatesListController {
   }
 
   addCandidate() {
-    this.$state.go("candidate-detail");
+    this.$state.go("candidate-add");
   }
 
   vote(id) {

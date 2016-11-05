@@ -1,6 +1,6 @@
 'use strict';
 
-export default class CandidateDetailController {
+export default class CandidateAddController {
   constructor(CandidatesService, $log, $state) {
     this.CandidatesService = CandidatesService;
     this.$log = $log;
@@ -27,4 +27,4 @@ export default class CandidateDetailController {
   }
 }
 
-CandidateDetailController.$inject = ['CandidatesService', '$log', '$state'];
+CandidateAddController.$inject = ['CandidatesService', '$log', '$state'];
