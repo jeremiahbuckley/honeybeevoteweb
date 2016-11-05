@@ -7,15 +7,23 @@ export default class CandidateVoteController {
     this.VotersService = VotersService;
     this.$log = $log;
     this.$state = $state;
-    this.voters = VotersService.query();
+    this.selectedVoter = "";
+    const self = this;
+    this.voters = VotersService.query().$promise.then((result, err) => {
+      if (err) {
+        self.$log.log(err);
+      } else {
+        self.voters = result;
+        if (self.voters.length > 0) {
+          self.selectedVoter = self.voters[0];
+        }
+      }});
     this.name = "";
-    this.selectedVoter = 0;
     this.candidateId = $stateParams.candidateId;
 
     if ($stateParams.candidateId === null) {
       this.$log.error("No candidate id!");
     } else {
-      const self = this;
       CandidatesService.get({id: $stateParams.candidateId}, result => {
         self.candidate = result;
         self.candidateName = result.name;

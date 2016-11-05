@@ -1,0 +1,41 @@
+<div class="container">
+	<div class="row">
+		Candidates
+	</div>
+	<div class="row">
+		<div class="col-xs-3">Name</div>
+		<div class="col-xs-2">Value</div>
+		<div class="col-xs-3">Actions</div>
+	</div>
+	<div ng-repeat="candidate in candidatesList.candidates">
+		<div class="row">
+			<div class="col-xs-3">{{candidate.name}}</div>
+			<div class="col-xs-2">{{candidate.value}}</div>
+			<div class="col-xs-3">
+				<button ng-click="candidatesList.delete(candidate._id)">
+					Delete
+				</button>
+			</div>
+			<div class="col-xs-3">
+				<button ng-click="candidatesList.vote(candidate._id)">
+					Vote
+				</button>
+			</div>
+		</div>
+		<div class = "row">
+			<div class="col-xs-5">Votes for {{candidate.name}}:</div>
+		</div>
+	    <vote-detail2 ng-repeat="vote in candidate.votes" vote="vote"></vote-detail2>
+	</div>
+	<div class="row">
+		<button ng-click="candidatesList.addCandidate()">
+			Add Candidate
+		</button>
+	</div>
+</div>
+
+
+
+	<div class="row">
+	    <pre>{{candidatesList.candidates}}</pre>
+	</div>

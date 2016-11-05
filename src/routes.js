@@ -2,7 +2,7 @@ export default routesConfig;
 
 import electionsController from './app/components/elections.controller.js';
 import votersController from './app/components/voters.controller.js';
-import candidatesController from './app/components/candidates.controller.js';
+import candidatesListController from './app/components/candidates-list.controller.js';
 import electionDetailController from './app/components/election-detail.controller.js';
 import voterDetailController from './app/components/voter-detail.controller.js';
 import candidateDetailController from './app/components/candidate-detail.controller.js';
@@ -32,9 +32,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('candidates', {
       url: '/candidates',
-      templateUrl: './app/components/candidates.html',
-      controller: candidatesController,
-      controllerAs: 'candidates'
+      templateUrl: './app/components/candidates-list.html',
+      controller: candidatesListController,
+      controllerAs: 'candidatesList'
     })
     .state('election-detail', {
       url: '/election-detail',

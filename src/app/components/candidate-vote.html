@@ -8,21 +8,14 @@
 			<div class="col-xs-1"></div>
 			<label class="col-xs-3">{{candidateVote.candidateName}}</label>
 		</div>
-		<div ng-repeat="vote in candidateVote.votes">
-			<div class = "row">
-				<label class="col-xs-4">{{vote.voterId}}</label>
-				<label class="col-xs-1">{{vote.value}}</label>
-				<label class="col-xs-3">{{vote.starttime | date: 'MM/dd/yyyy h:mma'}}</label>
-				<label class="col-xs-3">{{vote.endtime | date: 'MM/dd/yyyy h:mma'}}</label>
-				<label class="col-xs-1">{{vote.expired}}</label>				
-			</div>
-		</div>
+	    <vote-detail ng-repeat="vote in candidateVote.votes" vote="vote"></vote-detail>
 		<div class="row">
+    		<label class="col-xs-2">Vote as:</label>
 		    <select name="voterSelect" class="col-xs-3" 
 		    	ng-options="voter.name for voter in candidateVote.voters track by voter._id"
       			ng-model="candidateVote.selectedVoter"">
 		    </select>
-    		<label class="col-xs-3">Value</label>
+    		<label class="col-xs-2">Value</label>
 			<input class="col-xs-4" ng-model="candidateVote.value" type="text" required>
 		</div>
 		<div class="row">
