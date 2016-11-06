@@ -7,26 +7,9 @@
 		<div class="col-xs-2">Value</div>
 		<div class="col-xs-3">Actions</div>
 	</div>
-	<div ng-repeat="candidate in candidatesList.candidates">
-		<div class="row">
-			<div class="col-xs-3">{{candidate.name}}</div>
-			<div class="col-xs-2">{{candidate.value}}</div>
-			<div class="col-xs-3">
-				<button ng-click="candidatesList.delete(candidate._id)">
-					Delete
-				</button>
-			</div>
-			<div class="col-xs-3">
-				<button ng-click="candidatesList.vote(candidate._id)">
-					Vote
-				</button>
-			</div>
-		</div>
-		<div class = "row">
-			<div class="col-xs-5">Votes for {{candidate.name}}:</div>
-		</div>
-	    <vote-detail2 ng-repeat="vote in candidate.votes" vote="vote"></vote-detail2>
-	</div>
+	<candidate-detail ng-repeat="candidate in candidatesList.candidates" candidate="candidate" 
+		onDelete="delete" onVote="vote"></candidate-detail>
+
 	<div class="row">
 		<button ng-click="candidatesList.addCandidate()">
 			Add Candidate
