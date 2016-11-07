@@ -1,14 +1,25 @@
 class CandidateDetailController {
   constructor($log) {
     this.$log = $log;
+    this.showVotePanel = false;
   }
 
   delete(id) {
     return this.onDelete && this.onDelete({_id: id});
   }
 
-  vote(id) {
-    return this.onVote && this.onVote({_id: id});
+  showVote() {
+    this.showVotePanel = true;
+  }
+
+  candidateVoteOnCancel() {
+    this.showVotePanel = false;
+  }
+
+  candidateVoteOnSave(vData) {
+    if (this.onVoteSave) {
+      this.onVoteSave({voteData: vData});
+    }
   }
 }
 
@@ -20,6 +31,6 @@ export const candidateDetail = {
   bindings: {
     candidate: '<',
     onDelete: '&',
-    onVote: '&'
+    onVoteSave: '&'
   }
 };

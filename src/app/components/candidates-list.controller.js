@@ -1,8 +1,9 @@
 'use strict';
 
 export default class CandidatesListController {
-  constructor(CandidatesService, $state, $log) {
+  constructor(CandidatesService, CandidateVotesService, $state, $log) {
     this.CandidatesService = CandidatesService;
+    this.CandidateVotesService = CandidateVotesService;
     this.candidates = CandidatesService.query();
     this.$state = $state;
     this.$log = $log;
@@ -13,10 +14,6 @@ export default class CandidatesListController {
     this.CandidatesService.remove({id: _id}, () => {
       this.candidates = this.CandidatesService.query();
     });
-  }
-
-  vote(id) {
-    this.$state.go("candidate-vote", {candidateId: id});
   }
 
   addCandidateShow() {
@@ -38,6 +35,18 @@ export default class CandidatesListController {
   addCandidateOnCancel() {
     this.showAddPanel = false;
   }
+
+  saveVote(voteData) {
+    const self = this;
+    this.CandidateVotesService.save({candidateId: voteData.candidateId}, {voterId: voteData.voterId, value: voteData.value})
+      .$promise.then((result, err) => {
+        if (err) {
+          self.$log.error(err);
+        } else {
+          self.candidates = self.CandidatesService.query();
+        }
+      });
+  }
 }
 
-CandidatesListController.$inject = ['CandidatesService', '$state', '$log'];
+CandidatesListController.$inject = ['CandidatesService', 'CandidateVotesService', '$state', '$log'];

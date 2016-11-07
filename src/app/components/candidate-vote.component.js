@@ -5,7 +5,7 @@ class CandidateVoteController {
     this.$log = $log;
     this.selectedVoter = null;
     const self = this;
-    this.voters = VotersService.query().$promise.then((result, err) => {
+    this.voters = this.VotersService.query().$promise.then((result, err) => {
       if (err) {
         self.$log.log(err);
       } else {
@@ -18,21 +18,31 @@ class CandidateVoteController {
   }
 
   save() {
-    this.$log.log(`${this.candidateId} ${this.selectedVoter._id} ${this.value}`);
-
-    const self = this;
-    this.CandidateVotesService.save({candidateId: this.candidate._id}, {voterId: this.selectedVoter._id, value: this.value})
-      .$promise.then((result, err) => {
-        if (err) {
-          self.$log.error(err);
-        } else {
-          // self.$state.go("candidates");
-        }
-      });
+    if (this.onSave) {
+      this.onSave({voteData: {candidateId: this.candidate._id, voterId: this.selectedVoter._id, value: this.value}});
+    }
+    this.reset();
   }
 
   cancel() {
-    // this.$state.go("candidates");
+    if (this.onCancel) {
+      this.onCancel();
+    }
+    this.reset();
+  }
+
+  reset() {
+    this.value = 0;
+    const self = this;
+    this.voters = this.VotersService.query().$promise.then((result, err) => {
+      if (err) {
+        self.$log.log(err);
+      } else {
+        self.voters = result;
+        if (self.voters.length > 0) {
+          self.selectedVoter = self.voters[0];
+        }
+      }});
   }
 }
 

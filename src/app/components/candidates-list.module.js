@@ -8,10 +8,6 @@ import {candidateDetail} from './candidate-detail.component.js';
 import {candidateAdd} from './candidate-add.component.js';
 import {candidateVote} from './candidate-vote.component.js';
 
-let x = candidateVote;
-const y = x;
-x = y;
-
 export default angular.module('components.candidates-list', [])
   .controller('CandidatesListController', CandidatesListController)
   .component('voteDetail', voteDetail)

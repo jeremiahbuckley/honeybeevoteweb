@@ -7,13 +7,13 @@
 		</button>
 	</div>
 	<div class="col-xs-3">
-		<button ng-click="$ctrl.vote($ctrl.candidate._id)">
+		<button ng-click="$ctrl.showVote()">
 			Vote
 		</button>
 	</div>
 	<div ng-show="$ctrl.showVotePanel">
 		Hi, from vote-div
-		<candidate-vote on-save="$ctrl.voteOnSave(candidateData)" on-cancel="$ctrl.voteOnCancel()" candidate="candidate">
+		<candidate-vote on-save="$ctrl.candidateVoteOnSave(voteData)" candidate="$ctrl.candidate" on-cancel="$ctrl.candidateVoteOnCancel()">
 		</candidate-vote>
 	</div>
 </div>

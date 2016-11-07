@@ -3,12 +3,10 @@
 		Candidates
 	</div>
 	<div class="row">
-		<div class="col-xs-3">Name</div>
-		<div class="col-xs-2">Value</div>
-		<div class="col-xs-3">Actions</div>
+		<div class="col-xs-3">Name</div><div class="col-xs-2">Value</div><div class="col-xs-3">Actions</div>
 	</div>
-	<candidate-detail ng-repeat="candidate in candidatesList.candidates" candidate="candidate" 
-		on-delete="candidatesList.delete(_id)" on-vote="candidatesList.vote(_id)"></candidate-detail>
+	<candidate-detail ng-repeat="candidate in candidatesList.candidates" candidate="candidate"
+		on-delete="candidatesList.delete(_id)" on-vote-save="candidatesList.saveVote(voteData)"></candidate-detail>
 	<div class="row">
 		<button ng-click="candidatesList.addCandidateShow()">Add Candidate</button>
 	</div>
