@@ -1,10 +1,12 @@
 'use strict';
 
 export default class CandidatesListController {
-  constructor(CandidatesService, $state) {
+  constructor(CandidatesService, $state, $log) {
     this.CandidatesService = CandidatesService;
     this.candidates = CandidatesService.query();
     this.$state = $state;
+    this.$log = $log;
+    this.showAddPanel = false;
   }
 
   delete(_id) {
@@ -13,13 +15,30 @@ export default class CandidatesListController {
     });
   }
 
-  addCandidate() {
-    this.$state.go("candidate-add");
-  }
-
   vote(id) {
     this.$state.go("candidate-vote", {candidateId: id});
   }
+
+  addCandidateShow() {
+    this.$log.log('here')
+    this.showAddPanel = true;
+  }
+
+  addCandidateOnSave(candidateData) {
+    const self = this;
+    this.CandidatesService.save(candidateData).$promise.then((result, err) => {
+      if (err) {
+        self.$log.error(err);
+      } else {
+        self.showAddPanel = false;
+        self.candidates = self.CandidatesService.query();
+      }
+    });
+  }
+
+  addCandidateOnCancel() {
+    this.showAddPanel = false;
+  }
 }
 
-CandidatesListController.$inject = ['CandidatesService', '$state'];
+CandidatesListController.$inject = ['CandidatesService', '$state', '$log'];

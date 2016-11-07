@@ -9,11 +9,13 @@
 	</div>
 	<candidate-detail ng-repeat="candidate in candidatesList.candidates" candidate="candidate" 
 		onDelete="delete" onVote="vote"></candidate-detail>
-
 	<div class="row">
-		<button ng-click="candidatesList.addCandidate()">
-			Add Candidate
-		</button>
+		<button ng-click="candidatesList.addCandidateShow()">Add Candidate</button>
+	</div>
+	<div ng-show="candidatesList.showAddPanel">
+		Hi, from adder-div
+		<candidate-add on-save="candidatesList.addCandidateOnSave(candidateData)" on-cancel="candidatesList.addCandidateOnCancel()">
+		</candidate-add>
 	</div>
 </div>
 
