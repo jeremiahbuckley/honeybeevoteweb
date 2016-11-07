@@ -1,6 +1,6 @@
 'use strict';
 
-export default class VotersController {
+export default class VotersListController {
   constructor($state, VotersService) {
     this.VotersService = VotersService;
     this.voters = VotersService.query();
@@ -18,4 +18,4 @@ export default class VotersController {
   }
 }
 
-VotersController.$inject = ['$state', 'VotersService'];
+VotersListController.$inject = ['$state', 'VotersService'];

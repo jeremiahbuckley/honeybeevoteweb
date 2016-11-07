@@ -11,6 +11,11 @@
 			Vote
 		</button>
 	</div>
+	<div ng-show="$ctrl.showVotePanel">
+		Hi, from vote-div
+		<candidate-vote on-save="$ctrl.voteOnSave(candidateData)" on-cancel="$ctrl.voteOnCancel()" candidate="candidate">
+		</candidate-vote>
+	</div>
 </div>
 <div class = "row">
 	<div class="col-xs-5">Votes for {{$ctrl.candidate.name}}:</div>

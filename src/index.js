@@ -10,10 +10,9 @@ import {title} from './app/title';
 import {footer} from './app/footer';
 
 import elections from './app/components/elections.module.js';
-import voters from './app/components/voters.module.js';
+import votersList from './app/components/voters-list.module.js';
 import candidatesList from './app/components/candidates-list.module.js';
 import voterDetail from './app/components/voter-detail.module.js';
-import candidateVote from './app/components/candidate-vote.module.js';
 import coreShared from './app/core.shared.module.js';
 
 import 'jquery';
@@ -23,7 +22,7 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import './index.scss';
 
 angular
-  .module('app', [techsModule, 'ui.router', elections, voters, candidatesList, voterDetail, coreShared, candidateVote])
+  .module('app', [techsModule, 'ui.router', elections, votersList, candidatesList, voterDetail, coreShared])
   .config(routesConfig)
   .component('app', main)
   .component('fountainHeader', header)

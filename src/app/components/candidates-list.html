@@ -13,7 +13,6 @@
 		<button ng-click="candidatesList.addCandidateShow()">Add Candidate</button>
 	</div>
 	<div ng-show="candidatesList.showAddPanel">
-		Hi, from adder-div
 		<candidate-add on-save="candidatesList.addCandidateOnSave(candidateData)" on-cancel="candidatesList.addCandidateOnCancel()">
 		</candidate-add>
 	</div>

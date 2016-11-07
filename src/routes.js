@@ -1,11 +1,10 @@
 export default routesConfig;
 
 import electionsController from './app/components/elections.controller.js';
-import votersController from './app/components/voters.controller.js';
+import votersListController from './app/components/voters-list.controller.js';
 import candidatesListController from './app/components/candidates-list.controller.js';
 import electionDetailController from './app/components/election-detail.controller.js';
 import voterDetailController from './app/components/voter-detail.controller.js';
-import candidateVoteController from './app/components/candidate-vote.controller.js';
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -25,9 +24,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('voters', {
       url: '/voters',
-      templateUrl: './app/components/voters.html',
-      controller: votersController,
-      controllerAs: 'voters'
+      templateUrl: './app/components/voters-list.html',
+      controller: votersListController,
+      controllerAs: 'votersList'
     })
     .state('candidates', {
       url: '/candidates',
@@ -46,13 +45,6 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: './app/components/voter-detail.html',
       controller: voterDetailController,
       controllerAs: 'voterDetail'
-    })
-    .state('candidate-vote', {
-      url: '/candidate-vote',
-      templateUrl: './app/components/candidate-vote.html',
-      controller: candidateVoteController,
-      controllerAs: 'candidateVote',
-      params: {candidateId: null}
     })
     ;
 }
