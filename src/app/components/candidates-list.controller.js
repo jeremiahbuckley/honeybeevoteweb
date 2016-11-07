@@ -20,7 +20,6 @@ export default class CandidatesListController {
   }
 
   addCandidateShow() {
-    this.$log.log('here')
     this.showAddPanel = true;
   }
 

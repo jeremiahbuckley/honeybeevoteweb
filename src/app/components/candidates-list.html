@@ -8,7 +8,7 @@
 		<div class="col-xs-3">Actions</div>
 	</div>
 	<candidate-detail ng-repeat="candidate in candidatesList.candidates" candidate="candidate" 
-		onDelete="delete" onVote="vote"></candidate-detail>
+		on-delete="candidatesList.delete(_id)" on-vote="candidatesList.vote(_id)"></candidate-detail>
 	<div class="row">
 		<button ng-click="candidatesList.addCandidateShow()">Add Candidate</button>
 	</div>

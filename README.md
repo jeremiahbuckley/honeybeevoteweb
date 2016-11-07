@@ -18,4 +18,3 @@
   - localhost:3000/voters
   - localhost:3000/elections
   - localhost:3000/voter-detail
-  - localhost:3000/candidate-detail

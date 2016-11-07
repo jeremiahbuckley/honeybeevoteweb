@@ -1,12 +1,18 @@
 class CandidateDetailController {
+  constructor($log) {
+    this.$log = $log;
+  }
+
   delete(id) {
-    this.onDelete(id);
+    return this.onDelete && this.onDelete({_id: id});
   }
 
   vote(id) {
-    this.onVote(id);
+    return this.onVote && this.onVote({_id: id});
   }
 }
+
+CandidateDetailController.$inject = ['$log'];
 
 export const candidateDetail = {
   template: require('./candidate-detail.html'),

@@ -5,14 +5,18 @@ class CandidateAddController {
   }
 
   save() {
-    const nm = this.name;
-    this.name = "";
-    this.onSave({candidateData: {name: nm, value: 0}});
+    if (this.onSave) {
+      const nm = this.name;
+      this.name = "";
+      this.onSave({candidateData: {name: nm, value: 0}});
+    }
   }
 
   cancel() {
-    this.name = "";
-    this.onCancel();
+    if (this.onCancel) {
+      this.name = "";
+      this.onCancel();
+    }
   }
 }
 
