@@ -1,17 +1,20 @@
-<div>
-	<div class="row">
-		Candidate Add
-	</div>
-	<div class="row">
-		<label class="col-xs-3">Candidate name:</label>
-		<input class="col-xs-4" ng-model="$ctrl.name" type="text" required>
-	</div>
-	<div class="row">
-		<button ng-click="$ctrl.save()">
-			Save
-		</button>
-		<button ng-click="$ctrl.cancel()">
-			Cancel
-		</button>
-	</div>
+<div class="row">
+	Candidate Add
+</div>
+<div class="row">
+	<label class="col-xs-2">Candidate in:</label>
+    <select name="electionSelect" class="col-xs-3" 
+    	ng-options="election.name for election in $ctrl.elections track by election._id"
+			ng-model="$ctrl.selectedElection"">
+    </select>
+	<label class="col-xs-3">Candidate name:</label>
+	<input class="col-xs-4" ng-model="$ctrl.name" type="text" required>
+</div>
+<div class="row">
+	<button ng-click="$ctrl.save()">
+		Save
+	</button>
+	<button ng-click="$ctrl.cancel()">
+		Cancel
+	</button>
 </div>

@@ -5,6 +5,8 @@
 	<div class="row">
 		<div class="col-xs-3">Name</div>
 		<div class="col-xs-3">Actions</div>
+		<div class="col-xs-e">Candidates</div>
+		<div class="col-xs-e">Voters</div>
 	</div>
 	<div ng-repeat="election in electionsList.elections">
 		<div class="row">
@@ -14,6 +16,8 @@
 					Delete Election
 				</button>
 			</div>
+			<div class="col-xs-3">{{election.candidateIds}}</div>
+			<div class="col-xs-3">{{election.voterIds}}</div>
 		</div>
 	</div>
 	<div class="row">
