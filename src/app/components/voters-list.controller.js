@@ -33,7 +33,6 @@ export default class VotersListController {
   addVoterOnCancel() {
     this.showAddPanel = false;
   }
-
 }
 
 VotersListController.$inject = ['$state', 'VotersService'];

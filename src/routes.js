@@ -1,9 +1,8 @@
 export default routesConfig;
 
-import electionsController from './app/components/elections.controller.js';
+import electionsListController from './app/components/elections-list.controller.js';
 import votersListController from './app/components/voters-list.controller.js';
 import candidatesListController from './app/components/candidates-list.controller.js';
-import electionDetailController from './app/components/election-detail.controller.js';
 
 /** @ngInject */
 function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
@@ -17,9 +16,9 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
     })
     .state('elections', {
       url: '/elections',
-      templateUrl: './app/components/elections.html',
-      controller: electionsController,
-      controllerAs: 'elections'
+      templateUrl: './app/components/elections-list.html',
+      controller: electionsListController,
+      controllerAs: 'electionsList'
     })
     .state('voters', {
       url: '/voters',
@@ -32,12 +31,6 @@ function routesConfig($stateProvider, $urlRouterProvider, $locationProvider) {
       templateUrl: './app/components/candidates-list.html',
       controller: candidatesListController,
       controllerAs: 'candidatesList'
-    })
-    .state('election-detail', {
-      url: '/election-detail',
-      templateUrl: './app/components/election-detail.html',
-      controller: electionDetailController,
-      controllerAs: 'electionDetail'
     })
     ;
 }

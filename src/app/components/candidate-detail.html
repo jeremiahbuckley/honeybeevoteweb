@@ -20,4 +20,4 @@
 <div class = "row">
 	<div class="col-xs-5">Votes for {{$ctrl.candidate.name}}:</div>
 </div>
-<vote-detail ng-repeat="vote in $ctrl.candidate.votes" vote="vote"></vote-detail>
+<candidate-votes-list ng-repeat="vote in $ctrl.candidate.votes" vote="vote"></candidate-votes-list>

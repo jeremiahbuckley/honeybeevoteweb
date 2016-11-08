@@ -6,24 +6,22 @@
 		<div class="col-xs-3">Name</div>
 		<div class="col-xs-3">Actions</div>
 	</div>
-	<div ng-repeat="election in elections.elections">
+	<div ng-repeat="election in electionsList.elections">
 		<div class="row">
 			<div class="col-xs-3">{{election.name}}</div>
 			<div class="col-xs-3">
-				<button ng-click="elections.delete(election._id)">
+				<button ng-click="election.delete(election._id)">
 					Delete Election
 				</button>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<button ng-click="elections.addCandidate()">
+		<button ng-click="electionsList.addElection()">
 			Add Election
 		</button>
 	</div>
-</div>
-
-
-	<div class="row">
-	    <pre>{{elections.elections}}</pre>
+	<div ng-show="electionsList.showAddPanel">
+		<election-add on-save="electionsList.addElectionOnSave(electionData)" on-cancel="electionsList.addElectionOnCancel()"></election-add>
 	</div>
+</div>
