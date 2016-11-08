@@ -23,9 +23,7 @@
 			Add Voter
 		</button>
 	</div>
-</div>
-
-
-	<div class="row">
-	    <pre>{{votersList.voters}}</pre>
+	<div ng-show="votersList.showAddPanel">
+		<voter-add on-save="votersList.addVoterOnSave(voterData)" on-cancel="votersList.addVoterOnCancel()"></voter-add>
 	</div>
+</div>
