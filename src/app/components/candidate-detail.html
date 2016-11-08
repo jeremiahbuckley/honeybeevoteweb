@@ -1,22 +1,25 @@
 <div class="row">
+	<div class="col-xs-3">{{$ctrl.candidate._id}}</div>
 	<div class="col-xs-3">{{$ctrl.candidate.name}}</div>
 	<div class="col-xs-2">{{$ctrl.candidate.value}}</div>
-	<div class="col-xs-r">{{$ctrl.candidate.electionId}}</div>
-	<div class="col-xs-3">
+	<div class="col-xs-3">{{$ctrl.candidate.electionId}}</div>
+</div>
+<div class="row">
+	<div class="col-xs-1">&nbsp;</div>
+	<div class="col-xs-1">
 		<button ng-click="$ctrl.delete($ctrl.candidate._id)">
 			Delete
 		</button>
 	</div>
-	<div class="col-xs-3">
+	<div class="col-xs-1">
 		<button ng-click="$ctrl.showVote()">
 			Vote
 		</button>
 	</div>
-	<div ng-show="$ctrl.showVotePanel">
-		Hi, from vote-div
-		<candidate-vote on-save="$ctrl.candidateVoteOnSave(voteData)" candidate="$ctrl.candidate" on-cancel="$ctrl.candidateVoteOnCancel()">
-		</candidate-vote>
-	</div>
+</div>
+<div ng-show="$ctrl.showVotePanel">
+	<candidate-vote on-save="$ctrl.candidateVoteOnSave(voteData)" candidate="$ctrl.candidate" on-cancel="$ctrl.candidateVoteOnCancel()">
+	</candidate-vote>
 </div>
 <div class = "row">
 	<div class="col-xs-5">Votes for {{$ctrl.candidate.name}}:</div>
