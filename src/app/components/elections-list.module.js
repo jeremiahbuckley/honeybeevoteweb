@@ -4,8 +4,12 @@ import angular from 'angular';
 
 import ElectionsListController from './elections-list.controller.js';
 import {electionAdd} from './election-add.component.js';
+import {electionDetail} from './election-detail.component.js';
+import {electionSetCandidates} from './election-set-candidates.component.js';
 
 export default angular.module('components.elections', [])
   .controller('ElectionsListController', ElectionsListController)
   .component('electionAdd', electionAdd)
+  .component('electionDetail', electionDetail)
+  .component('electionSetCandidates', electionSetCandidates)
   .name;

@@ -6,39 +6,8 @@
 		<div class="col-xs-3">Id</div>
 		<div class="col-xs-2">Name</div>
 	</div>
-	<div ng-repeat="election in electionsList.elections">
-		<div class="row">
-			<div class="col-xs-3">{{election._id}}</div>
-			<div class="col-xs-2">{{election.name}}</div>
-			<div class="col-xs-1">
-				<button ng-click="election.delete(election._id)">
-					Delete
-				</button>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-1">
-				<label>&nbsp;</label>
-			</div>
-			<div class="col-xs-1">
-				<label>Candidates: </label>
-			</div>
-			<div class="col-xs-10">
-				<div class="col-xs-2">{{election.candidateIds}}</div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-xs-1">
-				<label>&nbsp;</label>
-			</div>
-			<div class="col-xs-1">
-				<label>Voters: </label>
-			</div>
-			<div class="col-xs-110">
-				<div class="col-xs-2">{{election.voterIds}}</div>
-			</div>
-		</div>
-	</div>
+	<election-detail ng-repeat="election in electionsList.elections" election="election"
+		on-delete="electionsList.delete(_id)" on-candidates-select-save="electionsList.saveCandidatesSelection(candidatesList)"></election-detail>
 	<div class="row">
 		<button ng-click="electionsList.addElection()">
 			Add Election
