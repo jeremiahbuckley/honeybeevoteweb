@@ -1,16 +1,19 @@
+/* eslint eqeqeq: "off" */
 class CandidateAddController {
   constructor(ElectionsService, $log) {
     this.ElectionsService = ElectionsService;
     this.$log = $log;
     this.selectedElection = null;
+    this.noElectionChoice = {name: "Don't assign election", _id: "-1"};
     const self = this;
-    this.elections = this.ElectionsService.query().$promise.then((result, err) => {
+    this.elections = this.ElectionsService.query().$promise.then((electionsList, err) => {
       if (err) {
         self.$log.log(err);
       } else {
-        self.elections = result;
-        if (self.elections.length > 0) {
-          self.selectedElection = self.elections[0];
+        electionsList.splice(0, 0, this.noElectionChoice); // add a no-election option.
+        self.elections = electionsList;
+        if (self.elections.length > 1) {
+          self.selectedElection = self.elections[1];
         }
       }});
     this.name = "";
@@ -18,10 +21,12 @@ class CandidateAddController {
 
   save() {
     if (this.onSave) {
-      const nm = this.name;
-      const eId = this.selectedElection._id;
+      const cData = {name: this.name, value: 0};
+      if (this.selectedElection && (this.selectedElection.name !== this.noElectionChoice.name)) {
+        cData.electionId = this.selectedElection._id;
+      }
       this.reset();
-      this.onSave({candidateData: {name: nm, value: 0, electionId: eId}});
+      this.onSave({candidateData: cData});
     }
   }
 
@@ -35,13 +40,14 @@ class CandidateAddController {
   reset() {
     this.name = "";
     const self = this;
-    this.elections = this.ElectionsService.query().$promise.then((result, err) => {
+    this.elections = this.ElectionsService.query().$promise.then((electionsList, err) => {
       if (err) {
         self.$log.log(err);
       } else {
-        self.elections = result;
-        if (self.elections.length > 0) {
-          self.selectedElection = self.elections[0];
+        electionsList.splice(0, 0, this.noElectionChoice); // add a no-election option.
+        self.elections = electionsList;
+        if (self.elections.length > 1) {
+          self.selectedElection = self.elections[1];
         }
       }});
   }
