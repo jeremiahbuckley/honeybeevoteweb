@@ -1,13 +1,36 @@
 <div class="row">
-	<label class="col-xs-3">Select Candidates from this list (list...tbd)!</label>
+	<div class="col-xs-1">
+	  <label>&nbsp;</label>
+	</div>
+	<label class="col-xs-3">Select Candidates</label>
+</div>
+<div ng-repeat="candidate in $ctrl.candidates">
+	<div class="row">
+	  <div class="col-xs-2">
+		<label>&nbsp;</label>
+	  </div>
+      <div class="col-xs-4">
+	  <input
+	    type="checkbox"
+	    value="candidate._id"
+	    ng-model="candidate.selected">
+	  </input>
+	  {{candidate.name}}
+	  </div>
+	</div>
 </div>
 <div class="row">
 	<div class="col-xs-1">
 		<label>&nbsp;</label>
 	</div>
 	<div class="col-xs-1">
-		<button ng-click="$ctrl.done()">
-			Done
+		<button ng-click="$ctrl.save()">
+			Save
+		</button>
+	</div>
+	<div class="col-xs-1">
+		<button ng-click="$ctrl.cancel()">
+			Cancel
 		</button>
 	</div>
 </div>

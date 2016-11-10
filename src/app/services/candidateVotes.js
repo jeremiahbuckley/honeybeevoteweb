@@ -1,5 +1,3 @@
-'use strict';
-
 export default class CandidateVotesService {
   constructor($resource) {
     this.$resource = $resource;

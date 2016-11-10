@@ -1,7 +1,6 @@
 class ElectionDetailController {
   constructor($log) {
     this.$log = $log;
-    this.$log.log(this.election);
     this.showCandidatesSelectPanel = false;
   }
 
@@ -10,7 +9,6 @@ class ElectionDetailController {
   }
 
   showSetCandidates() {
-    this.$log.log('here');
     this.showCandidatesSelectPanel = true;
   }
 
@@ -18,9 +16,10 @@ class ElectionDetailController {
     this.showCandidatesSelectPanel = false;
   }
 
-  candidatesSelectOnSave(candidatesList) {
+  candidatesSelectOnSave(cIdsList) {
+    this.showCandidatesSelectPanel = false;
     if (this.onCandidatesSelectSave) {
-      this.onCandidatesSelectSave({candidatesList});
+      this.onCandidatesSelectSave({candidateIdsList: {id: this.election._id, list: cIdsList}});
     }
   }
 }

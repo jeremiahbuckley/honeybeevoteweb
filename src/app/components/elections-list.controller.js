@@ -1,14 +1,13 @@
 'use strict';
 
 export default class ElectionsList {
-  constructor(ElectionsService, $state, $log) {
+  constructor(ElectionsService, ElectionsCandidatesService, $state, $log) {
     this.ElectionsService = ElectionsService;
+    this.ElectionsCandidatesService = ElectionsCandidatesService;
     this.elections = ElectionsService.query();
     this.$state = $state;
     this.$log = $log;
     this.showAddPanel = false;
-    this.$log.log('loaded ElectionsList');
-    this.$log.log(this.elections);
   }
 
   delete(_id) {
@@ -36,6 +35,16 @@ export default class ElectionsList {
   addElectionOnCancel() {
     this.showAddPanel = false;
   }
+
+  saveCandidatesSelection(cIds) {
+    cIds.list.forEach(cId => {
+      if (cId.selected) {
+        this.ElectionsCandidatesService.save({id: cIds.id, candidateid: cId.id});
+      } else {
+        this.ElectionsCandidatesService.remove({id: cIds.id, candidateid: cId.id});
+      }
+    });
+  }
 }
 
-ElectionsList.$inject = ['ElectionsService', '$state', '$log'];
+ElectionsList.$inject = ['ElectionsService', 'ElectionsCandidatesService', '$state', '$log'];

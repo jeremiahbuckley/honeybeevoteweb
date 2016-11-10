@@ -35,6 +35,6 @@
 	</div>
 </div>
 <div ng-show="$ctrl.showCandidatesSelectPanel">
-	<election-set-candidates on-save="$ctrl.candidatesSelectOnSave(candidatesList)" candidateIds="$ctrl.candidateIds" on-cancel="$ctrl.candidatesSelectOnCancel()"></election-set-candidates>	
+	<election-set-candidates on-save="$ctrl.candidatesSelectOnSave(candidateIdsList)" candidate-ids="$ctrl.election.candidateIds" on-cancel="$ctrl.candidatesSelectOnCancel()"></election-set-candidates>	
 </div>
 

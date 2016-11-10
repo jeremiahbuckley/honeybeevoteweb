@@ -7,7 +7,7 @@
 		<div class="col-xs-2">Name</div>
 	</div>
 	<election-detail ng-repeat="election in electionsList.elections" election="election"
-		on-delete="electionsList.delete(_id)" on-candidates-select-save="electionsList.saveCandidatesSelection(candidatesList)"></election-detail>
+		on-delete="electionsList.delete(_id)" on-candidates-select-save="electionsList.saveCandidatesSelection(candidateIdsList)"></election-detail>
 	<div class="row">
 		<button ng-click="electionsList.addElection()">
 			Add Election

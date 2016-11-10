@@ -1,28 +1,50 @@
 export default class ElectionSetCandidatesController {
-  constructor($log) {
+  constructor(CandidatesService, $log) {
+    this.CandidatesService = CandidatesService;
     this.$log = $log;
-    this.$log.log('herer 2');
+    this.candidates = [];
+    this.reset();
   }
 
   save() {
     if (this.onSave) {
-      const nm = this.name;
-      const eId = this.selectedElection._id;
+      const cIds = [];
+      this.candidates.forEach(candidate => {
+        cIds.push({id: candidate._id.toString(), selected: candidate.selected});
+      });
       this.reset();
-      this.onSave({candidateData: {name: nm, value: 0, electionId: eId}});
+      this.onSave({candidateIdsList: cIds});
     }
   }
 
   cancel() {
-    this.$log.log("election-set-candidates done!");
     if (this.onCancel) {
       this.reset();
       this.onCancel();
     }
   }
+
+  reset() {
+    const self = this;
+    this.CandidatesService.query().$promise.then((result, error) => {
+      if (error) {
+        self.$log.log(error);
+      } else {
+        self.candidates = result;
+        self.candidates.forEach(candidate => {
+          candidate.selected = false;
+          self.candidateIds.forEach(id => {
+            if (id === candidate._id) {
+              candidate.selected = true;
+            }
+          });
+        });
+      }
+    });
+  }
 }
 
-ElectionSetCandidatesController.$inject = ['$log'];
+ElectionSetCandidatesController.$inject = ['CandidatesService', '$log'];
 
 export const electionSetCandidates = {
   template: require('./election-set-candidates.html'),
