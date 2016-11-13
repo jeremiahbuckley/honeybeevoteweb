@@ -1,10 +1,17 @@
 class CandidatesListController {
-  constructor(CandidatesService, CandidateVotesService, $state, $log) {
+  constructor(CandidatesService, CandidatesListService, CandidateVotesService, $state, $log) {
     this.CandidatesService = CandidatesService;
+    this.CandidatesListService = CandidatesListService;
     this.CandidateVotesService = CandidateVotesService;
-    this.candidates = CandidatesService.query();
     this.$state = $state;
     this.$log = $log;
+    this.candidates = [];
+    this.$log.log(this.candidatesInElection);
+    if (this.candidatesInElection) {
+      this.candidates = CandidatesListService.getList(this.candidatesInElection);
+    } else {
+      this.candidates = CandidatesService.query();
+    }
     this.showAddPanel = false;
   }
 
@@ -47,9 +54,12 @@ class CandidatesListController {
   }
 }
 
-CandidatesListController.$inject = ['CandidatesService', 'CandidateVotesService', '$state', '$log'];
+CandidatesListController.$inject = ['CandidatesService', 'CandidatesListService', 'CandidateVotesService', '$state', '$log'];
 
 export const candidatesList = {
   template: require('./candidates-list.html'),
-  controller: CandidatesListController
+  controller: CandidatesListController,
+  bindings: {
+    candidatesInElection: '<'
+  }
 };

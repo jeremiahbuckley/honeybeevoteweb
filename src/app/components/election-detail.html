@@ -6,6 +6,11 @@
 			Set Candidates
 		</button>
 	</div>
+	<div class="col-xs-3">
+		<button ng-click="$ctrl.showCandidatesList()">
+			Candidate Details
+		</button>
+	</div>
 	<div class="col-xs-1">
 		<button ng-click="$ctrl.delete($ctrl.election._id)">
 			Delete
@@ -32,6 +37,19 @@
 	</div>
 	<div class="col-xs-110">
 		<div class="col-xs-2">{{$ctrl.election.voterIds}}</div>
+	</div>
+</div>
+<div ng-show="$ctrl.showCandidatesListPanel">
+	<candidates-list candidates-in-election="$ctrl.election.candidateIds"></candidates-list>
+	<div class="row">
+		<div class="col-xs-1">
+			<label>&nbsp;</label>
+		</div>
+		<div class="col-xs-3">
+			<button ng-click="$ctrl.closeCandidatesList()">
+				Close
+			</button>
+		</div>
 	</div>
 </div>
 <div ng-show="$ctrl.showCandidatesSelectPanel">

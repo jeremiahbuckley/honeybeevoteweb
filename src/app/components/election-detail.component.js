@@ -2,6 +2,7 @@ class ElectionDetailController {
   constructor($log) {
     this.$log = $log;
     this.showCandidatesSelectPanel = false;
+    this.showCandidatesListPanel = false;
   }
 
   delete(id) {
@@ -12,8 +13,16 @@ class ElectionDetailController {
     this.showCandidatesSelectPanel = true;
   }
 
+  showCandidatesList() {
+    this.showCandidatesListPanel = true;
+  }
+
   candidatesSelectOnCancel() {
     this.showCandidatesSelectPanel = false;
+  }
+
+  closeCandidatesList() {
+    this.showCandidatesListPanel = false;
   }
 
   candidatesSelectOnSave(cIdsList) {
