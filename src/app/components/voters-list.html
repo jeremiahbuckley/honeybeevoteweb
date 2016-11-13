@@ -7,24 +7,24 @@
 		<div class="col-xs-3">Name</div>
 		<div class="col-xs-2">Password</div>
 	</div>
-	<div ng-repeat="voter in votersList.voters">
+	<div ng-repeat="voter in $ctrl.voters">
 		<div class="row">
 			<div class="col-xs-3">{{voter._id}}</div>
 			<div class="col-xs-3">{{voter.name}}</div>
 			<div class="col-xs-2">{{voter.password}}</div>
 			<div class="col-xs-1">
-				<button ng-click="votersList.delete(voter._id)">
+				<button ng-click="$ctrl.delete(voter._id)">
 					Delete
 				</button>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<button ng-click="votersList.addVoter()">
+		<button ng-click="$ctrl.addVoter()">
 			Add Voter
 		</button>
 	</div>
-	<div ng-show="votersList.showAddPanel">
-		<voter-add on-save="votersList.addVoterOnSave(voterData)" on-cancel="votersList.addVoterOnCancel()"></voter-add>
+	<div ng-show="$ctrl.showAddPanel">
+		<voter-add on-save="$ctrl.addVoterOnSave(voterData)" on-cancel="$ctrl.addVoterOnCancel()"></voter-add>
 	</div>
 </div>

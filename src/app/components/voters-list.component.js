@@ -1,6 +1,4 @@
-'use strict';
-
-export default class VotersListController {
+class VotersListController {
   constructor($state, VotersService) {
     this.VotersService = VotersService;
     this.voters = VotersService.query();
@@ -36,3 +34,8 @@ export default class VotersListController {
 }
 
 VotersListController.$inject = ['$state', 'VotersService'];
+
+export const votersList = {
+  template: require('./voters-list.html'),
+  controller: VotersListController
+};

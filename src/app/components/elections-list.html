@@ -6,14 +6,14 @@
 		<div class="col-xs-3">Id</div>
 		<div class="col-xs-2">Name</div>
 	</div>
-	<election-detail ng-repeat="election in electionsList.elections" election="election"
-		on-delete="electionsList.delete(_id)" on-candidates-select-save="electionsList.saveCandidatesSelection(candidateIdsList)"></election-detail>
+	<election-detail ng-repeat="election in $ctrl.elections" election="election"
+		on-delete="$ctrl.delete(_id)" on-candidates-select-save="$ctrl.saveCandidatesSelection(candidateIdsList)"></election-detail>
 	<div class="row">
-		<button ng-click="electionsList.addElection()">
+		<button ng-click="$ctrl.addElection()">
 			Add Election
 		</button>
 	</div>
-	<div ng-show="electionsList.showAddPanel">
-		<election-add on-save="electionsList.addElectionOnSave(electionData)" on-cancel="electionsList.addElectionOnCancel()"></election-add>
+	<div ng-show="$ctrl.showAddPanel">
+		<election-add on-save="$ctrl.addElectionOnSave(electionData)" on-cancel="$ctrl.addElectionOnCancel()"></election-add>
 	</div>
 </div>

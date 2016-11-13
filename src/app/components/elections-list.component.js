@@ -1,6 +1,4 @@
-'use strict';
-
-export default class ElectionsList {
+class ElectionsListController {
   constructor(ElectionsService, ElectionsCandidatesService, $state, $log) {
     this.ElectionsService = ElectionsService;
     this.ElectionsCandidatesService = ElectionsCandidatesService;
@@ -47,4 +45,9 @@ export default class ElectionsList {
   }
 }
 
-ElectionsList.$inject = ['ElectionsService', 'ElectionsCandidatesService', '$state', '$log'];
+ElectionsListController.$inject = ['ElectionsService', 'ElectionsCandidatesService', '$state', '$log'];
+
+export const electionsList = {
+  template: require('./elections-list.html'),
+  controller: ElectionsListController
+};

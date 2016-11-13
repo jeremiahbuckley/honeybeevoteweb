@@ -8,13 +8,13 @@
 		<div class="col-xs-2">Value</div>
 		<div class="col-xs-3">ElectionId</div>
 	</div>
-	<candidate-detail ng-repeat="candidate in candidatesList.candidates" candidate="candidate"
-		on-delete="candidatesList.delete(_id)" on-vote-save="candidatesList.saveVote(voteData)"></candidate-detail>
+	<candidate-detail ng-repeat="candidate in $ctrl.candidates" candidate="candidate"
+		on-delete="$ctrl.delete(_id)" on-vote-save="$ctrl.saveVote(voteData)"></candidate-detail>
 	<div class="row">
-		<button ng-click="candidatesList.addCandidateShow()">Add Candidate</button>
+		<button ng-click="$ctrl.addCandidateShow()">Add Candidate</button>
 	</div>
-	<div ng-show="candidatesList.showAddPanel">
-		<candidate-add on-save="candidatesList.addCandidateOnSave(candidateData)" on-cancel="candidatesList.addCandidateOnCancel()">
+	<div ng-show="$ctrl.showAddPanel">
+		<candidate-add on-save="$ctrl.addCandidateOnSave(candidateData)" on-cancel="$ctrl.addCandidateOnCancel()">
 		</candidate-add>
 	</div>
 </div>
