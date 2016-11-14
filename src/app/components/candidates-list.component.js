@@ -43,7 +43,7 @@ class CandidatesListController {
 
   saveVote(voteData) {
     const self = this;
-    this.CandidateVotesService.save({candidateId: voteData.candidateId}, {voterId: voteData.voterId, value: voteData.value})
+    this.CandidateVotesService.save({candidateId: voteData.candidateId}, {voterId: voteData.voterId, electionId: voteData.electionId, value: voteData.value})
       .$promise.then((result, err) => {
         if (err) {
           self.$log.error(err);

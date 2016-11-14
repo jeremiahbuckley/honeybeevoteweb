@@ -1,7 +1,11 @@
 <div class = "row">
   <label class="col-xs-4">{{$ctrl.vote.voterId}}</label>
+</div>
+<div class = "row">
   <label class="col-xs-1">{{$ctrl.vote.value}}</label>
-  <label class="col-xs-3">{{$ctrl.vote.starttime | date: 'MM/dd/yyyy h:mma'}}</label>
-  <label class="col-xs-3">{{$ctrl.vote.endtime | date: 'MM/dd/yyyy h:mma'}}</label>
+  <label class="col-xs-3">{{$ctrl.vote.startTime | date: 'MM/dd/yyyy h:mma'}}</label>
+  <label class="col-xs-3">{{$ctrl.vote.endTime | date: 'MM/dd/yyyy h:mma'}}</label>
+  <label class="col-xs-3">{{$ctrl.vote.endDormancyTime | date: 'MM/dd/yyyy h:mma'}}</label>
   <label class="col-xs-1">{{$ctrl.vote.expired}}</label>        
+  <label class="col-xs-1">{{$ctrl.vote.voterIsDormant}}</label>        
 </div>
