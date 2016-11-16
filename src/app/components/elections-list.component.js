@@ -1,7 +1,8 @@
 class ElectionsListController {
-  constructor(ElectionsService, ElectionsCandidatesService, $state, $log) {
+  constructor(ElectionsService, ElectionsCandidatesService, CandidateElectionsService, $state, $log) {
     this.ElectionsService = ElectionsService;
     this.ElectionsCandidatesService = ElectionsCandidatesService;
+    this.CandidateElectionsService = CandidateElectionsService;
     this.elections = ElectionsService.query();
     this.$state = $state;
     this.$log = $log;
@@ -35,17 +36,23 @@ class ElectionsListController {
   }
 
   saveCandidatesSelection(cIds) {
-    cIds.list.forEach(cId => {
-      if (cId.selected) {
-        this.ElectionsCandidatesService.save({id: cIds.id, candidateid: cId.id});
+    cIds.list.forEach(candidateId => {
+      if (candidateId.selected) {
+        this.ElectionsCandidatesService.save({id: cIds.id}, {candidateId: candidateId.id}).$promise.then(
+          () => {
+            this.CandidateElectionsService.save({candidateId: candidateId.id}, {electionId: cIds.id});
+          });
       } else {
-        this.ElectionsCandidatesService.remove({id: cIds.id, candidateid: cId.id});
+        this.ElectionsCandidatesService.remove({id: cIds.id, candidateid: candidateId.id}).$promise.then(
+          () => {
+            this.CandidateElectionsService.remove({candidateId: candidateId.id, id: cIds.id});
+          });
       }
     });
   }
 }
 
-ElectionsListController.$inject = ['ElectionsService', 'ElectionsCandidatesService', '$state', '$log'];
+ElectionsListController.$inject = ['ElectionsService', 'ElectionsCandidatesService', 'CandidateElectionsService', '$state', '$log'];
 
 export const electionsList = {
   template: require('./elections-list.html'),

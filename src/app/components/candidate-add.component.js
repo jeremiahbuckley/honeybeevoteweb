@@ -21,7 +21,7 @@ class CandidateAddController {
 
   save() {
     if (this.onSave) {
-      const cData = {name: this.name, value: 0};
+      const cData = {name: this.name};
       if (this.selectedElection && (this.selectedElection.name !== this.noElectionChoice.name)) {
         cData.electionId = this.selectedElection._id;
       }

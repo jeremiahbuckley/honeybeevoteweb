@@ -1,8 +1,10 @@
 class CandidatesListController {
-  constructor(CandidatesService, CandidatesListService, CandidateVotesService, $state, $log) {
+  constructor(CandidatesService, CandidatesListService, CandidateElectionsService, CandidateVotesService, ElectionsCandidatesService, $state, $log) {
     this.CandidatesService = CandidatesService;
     this.CandidatesListService = CandidatesListService;
+    this.CandidateElectionsService = CandidateElectionsService;
     this.CandidateVotesService = CandidateVotesService;
+    this.ElectionsCandidatesService = ElectionsCandidatesService;
     this.$state = $state;
     this.$log = $log;
     this.candidates = [];
@@ -27,12 +29,30 @@ class CandidatesListController {
 
   addCandidateOnSave(candidateData) {
     const self = this;
-    this.CandidatesService.save(candidateData).$promise.then((result, err) => {
+    this.CandidatesService.saveText({name: candidateData.name}).$promise.then((result, err) => {
       if (err) {
         self.$log.error(err);
       } else {
-        self.showAddPanel = false;
-        self.candidates = self.CandidatesService.query();
+        const cId = result.content.substring('/candidates/'.length);
+        if (candidateData.electionId) {
+          this.CandidateElectionsService.save({candidateId: cId}, {electionId: candidateData.electionId}).$promise.then((result, err) => {
+            if (err) {
+              self.$log.error(err);
+            } else {
+              this.ElectionsCandidatesService.save({id: candidateData.electionId}, {candidateId: cId}).$promise.then((result, err) => {
+                if (err) {
+                  self.$log.error(err);
+                } else {
+                  self.showAddPanel = false;
+                  self.candidates = self.CandidatesService.query();
+                }
+              });
+            }
+          });
+        } else {
+          self.showAddPanel = false;
+          self.candidates = self.CandidatesService.query();
+        }
       }
     });
   }
@@ -54,7 +74,7 @@ class CandidatesListController {
   }
 }
 
-CandidatesListController.$inject = ['CandidatesService', 'CandidatesListService', 'CandidateVotesService', '$state', '$log'];
+CandidatesListController.$inject = ['CandidatesService', 'CandidatesListService', 'CandidateElectionsService', 'CandidateVotesService', 'ElectionsCandidatesService', '$state', '$log'];
 
 export const candidatesList = {
   template: require('./candidates-list.html'),
