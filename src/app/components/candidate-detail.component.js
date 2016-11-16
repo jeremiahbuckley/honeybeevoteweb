@@ -18,6 +18,7 @@ class CandidateDetailController {
 
   candidateVoteOnSave(vData) {
     if (this.onVoteSave) {
+      vData.candidateId = this.candidate._id;
       this.onVoteSave({voteData: vData});
     }
   }

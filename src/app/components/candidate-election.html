@@ -1,0 +1,18 @@
+<div class="row">
+	<div class="col-xs-1">&nbsp;</div>
+	<div class="col-xs-1">Value</div>
+	<div class="col-xs-1">{{$ctrl.candidateElection.value}}</div>
+	<div class="col-xs-1">
+		<button ng-click="$ctrl.showVote()">
+			Vote
+		</button>
+	</div>
+</div>
+<div class = "row">
+	<div class="col-xs-7">Votes for {{$ctrl.candidateName}} in {{$ctrl.candidateElection.electionId}}:</div>
+</div>
+<candidate-votes-list ng-repeat="vote in $ctrl.candidateElection.votes" vote="vote"></candidate-votes-list>
+<div ng-show="$ctrl.showVotePanel">
+	<candidate-vote on-save="$ctrl.candidateVoteOnSave(voteData)" on-cancel="$ctrl.candidateVoteOnCancel()">
+	</candidate-vote>
+</div>

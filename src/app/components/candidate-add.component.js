@@ -59,6 +59,7 @@ export const candidateAdd = {
   template: require('./candidate-add.html'),
   controller: CandidateAddController,
   bindings: {
+    election: '<',
     onSave: '&',
     onCancel: '&'
   }

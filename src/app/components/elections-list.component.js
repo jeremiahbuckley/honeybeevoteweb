@@ -21,7 +21,7 @@ class ElectionsListController {
 
   addElectionOnSave(electionData) {
     const self = this;
-    this.ElectionsService.save({name: electionData.name}).$promise.then((result, err) => {
+    this.ElectionsService.save(electionData).$promise.then((result, err) => {
       if (err) {
         self.$log.error(err);
       } else {
@@ -43,7 +43,7 @@ class ElectionsListController {
             this.CandidateElectionsService.save({candidateId: candidateId.id}, {electionId: cIds.id});
           });
       } else {
-        this.ElectionsCandidatesService.remove({id: cIds.id, candidateid: candidateId.id}).$promise.then(
+        this.ElectionsCandidatesService.remove({id: cIds.id, candidateId: candidateId.id}).$promise.then(
           () => {
             this.CandidateElectionsService.remove({candidateId: candidateId.id, id: cIds.id});
           });

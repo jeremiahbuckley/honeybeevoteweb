@@ -1,10 +1,5 @@
 <div class="row">
-	<label class="col-xs-1">In:</label>
-    <select name="electionSelect" class="col-xs-3" 
-    	ng-options="election.name for election in $ctrl.elections track by election._id"
-			ng-model="$ctrl.selectedElection">
-    </select>
-	<label class="col-xs-2">Vote as:</label>
+ 	<label class="col-xs-2">Vote as:</label>
     <select name="voterSelect" class="col-xs-3" 
     	ng-options="voter.name for voter in $ctrl.voters track by voter._id"
 			ng-model="$ctrl.selectedVoter"">

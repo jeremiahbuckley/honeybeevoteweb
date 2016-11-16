@@ -7,6 +7,7 @@ import {candidateVotesList} from './candidate-votes-list.component.js';
 import {candidateDetail} from './candidate-detail.component.js';
 import {candidateAdd} from './candidate-add.component.js';
 import {candidateVote} from './candidate-vote.component.js';
+import {candidateElection} from './candidate-election.component.js';
 
 export default angular.module('components.candidates', [])
   .component('candidatesList', candidatesList)
@@ -14,4 +15,5 @@ export default angular.module('components.candidates', [])
   .component('candidateDetail', candidateDetail)
   .component('candidateAdd', candidateAdd)
   .component('candidateVote', candidateVote)
+  .component('candidateElection', candidateElection)
   .name;

@@ -5,23 +5,11 @@
 	<div class="col-xs-3">{{$ctrl.candidate.electionId}}</div>
 </div>
 <div class="row">
-	<div class="col-xs-1">&nbsp;</div>
+ 	<div class="col-xs-1">&nbsp;</div>
 	<div class="col-xs-1">
 		<button ng-click="$ctrl.delete($ctrl.candidate._id)">
 			Delete
 		</button>
 	</div>
-	<div class="col-xs-1">
-		<button ng-click="$ctrl.showVote()">
-			Vote
-		</button>
-	</div>
 </div>
-<div ng-show="$ctrl.showVotePanel">
-	<candidate-vote on-save="$ctrl.candidateVoteOnSave(voteData)" candidate="$ctrl.candidate" on-cancel="$ctrl.candidateVoteOnCancel()">
-	</candidate-vote>
-</div>
-<div class = "row">
-	<div class="col-xs-5">Votes for {{$ctrl.candidate.name}}:</div>
-</div>
-<candidate-votes-list ng-repeat="vote in $ctrl.candidate.votes" vote="vote"></candidate-votes-list>
+<candidate-election ng-repeat="candidateElection in $ctrl.candidate.candidateElections" candidate-election="candidateElection" candidate-name="$ctrl.candidate.name" on-vote-save="$ctrl.candidateVoteOnSave(voteData)"></candidate-election>
