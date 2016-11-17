@@ -28,6 +28,7 @@ export const candidateElection = {
   bindings: {
     candidateName: '<',
     candidateElection: '<',
+    voters: '<',
     onVoteSave: '&'
   }
 };

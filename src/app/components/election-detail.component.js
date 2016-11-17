@@ -39,6 +39,7 @@ export const electionDetail = {
   template: require('./election-detail.html'),
   controller: ElectionDetailController,
   bindings: {
+    candidates: '<',
     election: '<',
     onDelete: '&',
     onCandidatesSelectSave: '&'

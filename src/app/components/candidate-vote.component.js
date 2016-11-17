@@ -1,56 +1,52 @@
 class CandidateVoteController {
-  constructor(VotersService, $log) {
-    this.VotersService = VotersService;
+  constructor($log) {
     this.$log = $log;
     this.selectedVoter = null;
-    const self = this;
-    this.voters = this.VotersService.query().$promise.then((result, err) => {
-      if (err) {
-        self.$log.log(err);
-      } else {
-        self.voters = result;
-        if (self.voters.length > 0) {
-          self.selectedVoter = self.voters[0];
-        }
-      }});
     this.value = 0;
+    this.reset();
   }
 
   save() {
-    if (this.onSave) {
-      this.onSave({voteData: {voterId: this.selectedVoter._id, value: this.value}});
-    }
+    const vId = this.selectedVoter._id;
+    const val = this.value;
     this.reset();
+    if (this.onSave) {
+      this.onSave({voteData: {voterId: vId, value: val}});
+    }
   }
 
   cancel() {
+    this.reset();
     if (this.onCancel) {
       this.onCancel();
     }
-    this.reset();
   }
 
   reset() {
     this.value = 0;
-    const self = this;
-    this.voters = this.VotersService.query().$promise.then((result, err) => {
-      if (err) {
-        self.$log.log(err);
-      } else {
-        self.voters = result;
-        if (self.voters.length > 0) {
-          self.selectedVoter = self.voters[0];
+    if (this.voters.length > 0) {
+      this.selectedVoter = this.voters[0];
+    }
+  }
+
+  $onChanges(changesObj) {
+    if (changesObj.voters) {
+      if (angular.isDefined(this.voters)) {
+        if (this.voters.length > 0) {
+          this.selectedVoter = this.voters[0];
         }
-      }});
+      }
+    }
   }
 }
 
-CandidateVoteController.$inject = ['VotersService', '$log'];
+CandidateVoteController.$inject = ['$log'];
 
 export const candidateVote = {
   template: require('./candidate-vote.html'),
   controller: CandidateVoteController,
   bindings: {
+    voters: '<',
     onSave: '&',
     onCancel: '&'
   }

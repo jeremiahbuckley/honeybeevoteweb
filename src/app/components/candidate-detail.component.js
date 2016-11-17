@@ -22,6 +22,13 @@ class CandidateDetailController {
       this.onVoteSave({voteData: vData});
     }
   }
+
+  filterByElectionId(actual, expected) {
+    if (angular.isUndefined(expected)) {
+      return true;
+    }
+    return actual === expected;
+  }
 }
 
 CandidateDetailController.$inject = ['$log'];
@@ -30,7 +37,9 @@ export const candidateDetail = {
   template: require('./candidate-detail.html'),
   controller: CandidateDetailController,
   bindings: {
+    voters: '<',
     candidate: '<',
+    electionId: '<',
     onDelete: '&',
     onVoteSave: '&'
   }

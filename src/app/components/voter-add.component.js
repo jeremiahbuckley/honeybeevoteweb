@@ -3,24 +3,28 @@ class VoterAddController {
     this.$log = $log;
     this.name = "";
     this.password = "";
+    this.reset();
   }
 
   save() {
+    const nm = this.name;
+    const pw = this.password;
+    this.reset();
     if (this.onSave) {
-      const nm = this.name;
-      const pw = this.password;
-      this.name = "";
-      this.password = "";
       this.onSave({voterData: {name: nm, password: pw}});
     }
   }
 
   cancel() {
+    this.reset();
     if (this.onCancel) {
-      this.name = "";
-      this.password = "";
       this.onCancel();
     }
+  }
+
+  reset() {
+    this.name = "";
+    this.password = "";
   }
 }
 

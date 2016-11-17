@@ -1,5 +1,5 @@
 <div class="row">
- 	<label class="col-xs-2">Vote as:</label>
+ 	<label class="col-xs-1">Vote as:</label>
     <select name="voterSelect" class="col-xs-3" 
     	ng-options="voter.name for voter in $ctrl.voters track by voter._id"
 			ng-model="$ctrl.selectedVoter"">
@@ -8,9 +8,6 @@
 	<input class="col-xs-2" ng-model="$ctrl.value" type="text" required>
 </div>
 <div class="row">
-	<div class="col-xs-1">
-		&nbsp;	
-	</div>
 	<div class="col-xs-1">
 		<button ng-click="$ctrl.save()">
 			Save

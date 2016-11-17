@@ -1,19 +1,36 @@
 class CandidatesListController {
-  constructor(CandidatesService, CandidatesListService, CandidateElectionsService, CandidateVotesService, ElectionsCandidatesService, $state, $log) {
+  constructor(CandidatesService, CandidatesListService, CandidateElectionsService, CandidateVotesService, ElectionsCandidatesService, ElectionsService, VotersService, $state, $log) {
     this.CandidatesService = CandidatesService;
     this.CandidatesListService = CandidatesListService;
     this.CandidateElectionsService = CandidateElectionsService;
     this.CandidateVotesService = CandidateVotesService;
+    this.ElectionsService = ElectionsService;
     this.ElectionsCandidatesService = ElectionsCandidatesService;
+    this.VotersService = VotersService;
     this.$state = $state;
     this.$log = $log;
     this.candidates = [];
-    this.$log.log(this.candidatesInElection);
     if (this.candidatesInElection) {
       this.candidates = CandidatesListService.getList(this.candidatesInElection);
     } else {
       this.candidates = CandidatesService.query();
     }
+    const self = this;
+    this.voters = this.VotersService.query().$promise.then((voters, err) => {
+      if (err) {
+        self.$log.log(err);
+      } else {
+        this.voters = voters;
+      }
+    });
+    this.noElectionChoice = {name: "Don't assign election", _id: "-1"};
+    this.elections = this.ElectionsService.query().$promise.then((electionsList, err) => {
+      if (err) {
+        self.$log.log(err);
+      } else {
+        electionsList.splice(0, 0, this.noElectionChoice); // add a no-election option.
+        self.elections = electionsList;
+      }});
     this.showAddPanel = false;
   }
 
@@ -74,12 +91,13 @@ class CandidatesListController {
   }
 }
 
-CandidatesListController.$inject = ['CandidatesService', 'CandidatesListService', 'CandidateElectionsService', 'CandidateVotesService', 'ElectionsCandidatesService', '$state', '$log'];
+CandidatesListController.$inject = ['CandidatesService', 'CandidatesListService', 'CandidateElectionsService', 'CandidateVotesService', 'ElectionsCandidatesService', 'ElectionsService', 'VotersService', '$state', '$log'];
 
 export const candidatesList = {
   template: require('./candidates-list.html'),
   controller: CandidatesListController,
   bindings: {
-    candidatesInElection: '<'
+    candidatesInElection: '<',
+    electionId: '<'
   }
 };

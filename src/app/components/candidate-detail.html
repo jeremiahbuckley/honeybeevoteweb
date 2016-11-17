@@ -1,8 +1,6 @@
 <div class="row">
 	<div class="col-xs-3">{{$ctrl.candidate._id}}</div>
 	<div class="col-xs-3">{{$ctrl.candidate.name}}</div>
-	<div class="col-xs-2">{{$ctrl.candidate.value}}</div>
-	<div class="col-xs-3">{{$ctrl.candidate.electionId}}</div>
 </div>
 <div class="row">
  	<div class="col-xs-1">&nbsp;</div>
@@ -12,4 +10,4 @@
 		</button>
 	</div>
 </div>
-<candidate-election ng-repeat="candidateElection in $ctrl.candidate.candidateElections" candidate-election="candidateElection" candidate-name="$ctrl.candidate.name" on-vote-save="$ctrl.candidateVoteOnSave(voteData)"></candidate-election>
+<candidate-election ng-repeat="candidateElection in $ctrl.candidate.candidateElections | filter:{electionId:$ctrl.electionId}:$ctrl.filterByElectionId" candidate-election="candidateElection" candidate-name="$ctrl.candidate.name" election-id="$ctrl.electionId" voters="$ctrl.voters" on-vote-save="$ctrl.candidateVoteOnSave(voteData)"></candidate-election>

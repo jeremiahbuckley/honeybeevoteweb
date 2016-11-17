@@ -1,22 +1,10 @@
 /* eslint eqeqeq: "off" */
 class CandidateAddController {
-  constructor(ElectionsService, $log) {
-    this.ElectionsService = ElectionsService;
+  constructor($log) {
     this.$log = $log;
     this.selectedElection = null;
-    this.noElectionChoice = {name: "Don't assign election", _id: "-1"};
-    const self = this;
-    this.elections = this.ElectionsService.query().$promise.then((electionsList, err) => {
-      if (err) {
-        self.$log.log(err);
-      } else {
-        electionsList.splice(0, 0, this.noElectionChoice); // add a no-election option.
-        self.elections = electionsList;
-        if (self.elections.length > 1) {
-          self.selectedElection = self.elections[1];
-        }
-      }});
     this.name = "";
+    this.reset();
   }
 
   save() {
@@ -31,35 +19,43 @@ class CandidateAddController {
   }
 
   cancel() {
+    this.reset();
     if (this.onCancel) {
-      this.reset();
       this.onCancel();
     }
   }
 
   reset() {
     this.name = "";
-    const self = this;
-    this.elections = this.ElectionsService.query().$promise.then((electionsList, err) => {
-      if (err) {
-        self.$log.log(err);
-      } else {
-        electionsList.splice(0, 0, this.noElectionChoice); // add a no-election option.
-        self.elections = electionsList;
-        if (self.elections.length > 1) {
-          self.selectedElection = self.elections[1];
+    if (this.elections) {
+      if (this.elections.length > 1) {
+        this.selectedElection = this.elections[1];
+      } else if (this.elections.length > 0) {
+        this.selectedElection = this.elections[0];
+      }
+    }
+  }
+
+  $onChanges(changesObj) {
+    if (changesObj.elections) {
+      if (angular.isDefined(this.elections)) {
+        if (this.elections.length > 1) {
+          this.selectedElection = this.elections[1];
+        } else if (this.elections.length > 0) {
+          this.selectedElection = this.elections[0];
         }
-      }});
+      }
+    }
   }
 }
 
-CandidateAddController.$inject = ['ElectionsService', '$log'];
+CandidateAddController.$inject = ['$log'];
 
 export const candidateAdd = {
   template: require('./candidate-add.html'),
   controller: CandidateAddController,
   bindings: {
-    election: '<',
+    elections: '<',
     onSave: '&',
     onCancel: '&'
   }

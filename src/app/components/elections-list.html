@@ -5,8 +5,11 @@
 	<div class="row">
 		<div class="col-xs-3">Id</div>
 		<div class="col-xs-2">Name</div>
+		<div class="col-xs-2">Win Threshhold</div>
+		<div class="col-xs-2">Vote Sustain Duration</div>
+		<div class="col-xs-2">Voter Dormancy Duration</div>
 	</div>
-	<election-detail ng-repeat="election in $ctrl.elections" election="election"
+	<election-detail ng-repeat="election in $ctrl.elections" election="election" candidates="$ctrl.candidates"
 		on-delete="$ctrl.delete(_id)" on-candidates-select-save="$ctrl.saveCandidatesSelection(candidateIdsList)"></election-detail>
 	<div class="row">
 		<button ng-click="$ctrl.addElection()">

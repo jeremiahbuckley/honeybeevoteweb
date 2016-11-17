@@ -1,9 +1,9 @@
 <div class="row">
 	<div class="col-xs-3">{{$ctrl.election._id}}</div>
 	<div class="col-xs-2">{{$ctrl.election.name}}</div>
-	<div class="col-xs-1">{{$ctrl.election.winThreshhold}}</div>
-	<div class="col-xs-1">{{$ctrl.election.voteSustainDuration}}</div>
-	<div class="col-xs-1">{{$ctrl.election.voterDormancyDuration}}</div>
+	<div class="col-xs-2">{{$ctrl.election.winThreshhold}}</div>
+	<div class="col-xs-2">{{$ctrl.election.voteSustainDuration}}</div>
+	<div class="col-xs-2">{{$ctrl.election.voterDormancyDuration}}</div>
 </div>
 <div class="row">
 	<div class="col-xs-3">
@@ -44,20 +44,20 @@
 		<div class="col-xs-2">{{$ctrl.election.voterIds}}</div>
 	</div>
 </div>
-<div ng-show="$ctrl.showCandidatesListPanel">
-	<candidates-list candidates-in-election="$ctrl.election.candidateIds"></candidates-list>
-	<div class="row">
-		<div class="col-xs-1">
-			<label>&nbsp;</label>
-		</div>
-		<div class="col-xs-3">
-			<button ng-click="$ctrl.closeCandidatesList()">
-				Close
-			</button>
+<div class="row" ng-show="$ctrl.showCandidatesListPanel">
+	<div class="col-xs-1">&nbsp;</div>
+	<div class="col-xs-11">
+		<candidates-list candidates-in-election="$ctrl.election.candidateIds" election-id="$ctrl.election._id"></candidates-list>
+		<div class="row">
+			<div class="col-xs-4">
+				<button ng-click="$ctrl.closeCandidatesList()">
+					Close Candidate Details
+				</button>
+			</div>
 		</div>
 	</div>
 </div>
 <div ng-show="$ctrl.showCandidatesSelectPanel">
-	<election-set-candidates on-save="$ctrl.candidatesSelectOnSave(candidateIdsList)" candidate-ids="$ctrl.election.candidateIds" on-cancel="$ctrl.candidatesSelectOnCancel()"></election-set-candidates>	
+	<election-set-candidates on-save="$ctrl.candidatesSelectOnSave(candidateIdsList)" candidate-ids="$ctrl.election.candidateIds" candidates="$ctrl.candidates" on-cancel="$ctrl.candidatesSelectOnCancel()"></election-set-candidates>	
 </div>
 

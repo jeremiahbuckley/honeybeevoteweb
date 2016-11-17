@@ -5,24 +5,33 @@ export default class ElectionAddController {
     this.winThreshhold = 10;
     this.voteSustainDuration = 3;
     this.voterDormancyDuration = 2;
+    this.reset();
   }
 
   save() {
+    const nm = this.name;
+    const wt = this.winThreshhold;
+    const vsd = this.voteSustainDuration;
+    const vdd = this.voterDormancyDuration;
+    this.reset();
+
     if (this.onSave) {
-      const nm = this.name;
-      const wt = this.winThreshhold;
-      const vsd = this.voteSustainDuration;
-      const vdd = this.voterDormancyDuration;
-      this.name = "";
       this.onSave({electionData: {name: nm, winThreshhold: wt, voteSustainDuration: vsd, voterDormancyDuration: vdd}});
     }
   }
 
   cancel() {
+    this.reset();
     if (this.onCancel) {
-      this.name = "";
       this.onCancel();
     }
+  }
+
+  reset() {
+    this.name = "";
+    this.winThreshhold = 10;
+    this.voteSustainDuration = 3;
+    this.voterDormancyDuration = 2;
   }
 }
 
