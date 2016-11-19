@@ -1,4 +1,11 @@
 <div class="row">
+	<div ng-show="$ctrl.showElectionSelect">
+	 	<label class="col-xs-1">In:</label>
+	    <select name="electionSelect" class="col-xs-3" 
+	    	ng-options="election.name for election in $ctrl.elections track by election._id"
+				ng-model="$ctrl.selectedElection"">
+	    </select>			
+	</div>
  	<label class="col-xs-3">Candidate name:</label>
 	<input class="col-xs-4" ng-model="$ctrl.name" type="text" required>
 </div>

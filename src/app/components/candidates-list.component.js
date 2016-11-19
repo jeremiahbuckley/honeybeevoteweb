@@ -44,6 +44,10 @@ class CandidatesListController {
     this.showAddPanel = true;
   }
 
+  addCandidateElections() {
+    return (angular.isUndefined(this.electionId));
+  }
+
   addCandidateOnSave(candidateData) {
     const self = this;
     this.CandidatesService.saveText({name: candidateData.name}).$promise.then((result, err) => {
@@ -51,12 +55,16 @@ class CandidatesListController {
         self.$log.error(err);
       } else {
         const cId = result.content.substring('/candidates/'.length);
-        if (candidateData.electionId) {
-          this.CandidateElectionsService.save({candidateId: cId}, {electionId: candidateData.electionId}).$promise.then((result, err) => {
+        let eId = this.electionId;
+        if (this.addCandidateElections()) {
+          eId = candidateData.electionId;
+        }
+        if (eId) {
+          this.CandidateElectionsService.save({candidateId: cId}, {electionId: eId}).$promise.then((result, err) => {
             if (err) {
               self.$log.error(err);
             } else {
-              this.ElectionsCandidatesService.save({id: candidateData.electionId}, {candidateId: cId}).$promise.then((result, err) => {
+              this.ElectionsCandidatesService.save({id: eId}, {candidateId: cId}).$promise.then((result, err) => {
                 if (err) {
                   self.$log.error(err);
                 } else {

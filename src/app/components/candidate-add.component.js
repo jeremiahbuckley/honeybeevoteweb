@@ -10,7 +10,7 @@ class CandidateAddController {
   save() {
     if (this.onSave) {
       const cData = {name: this.name};
-      if (this.selectedElection && (this.selectedElection.name !== this.noElectionChoice.name)) {
+      if (this.showElectionSelect && this.selectedElection && (this.selectedElection.name !== this.noElectionChoice.name)) {
         cData.electionId = this.selectedElection._id;
       }
       this.reset();
@@ -27,7 +27,7 @@ class CandidateAddController {
 
   reset() {
     this.name = "";
-    if (this.elections) {
+    if (this.showElectionSelect && this.elections) {
       if (this.elections.length > 1) {
         this.selectedElection = this.elections[1];
       } else if (this.elections.length > 0) {
@@ -38,11 +38,13 @@ class CandidateAddController {
 
   $onChanges(changesObj) {
     if (changesObj.elections) {
-      if (angular.isDefined(this.elections)) {
-        if (this.elections.length > 1) {
-          this.selectedElection = this.elections[1];
-        } else if (this.elections.length > 0) {
-          this.selectedElection = this.elections[0];
+      if (this.showElectionSelect) {
+        if (angular.isDefined(this.elections)) {
+          if (this.elections.length > 1) {
+            this.selectedElection = this.elections[1];
+          } else if (this.elections.length > 0) {
+            this.selectedElection = this.elections[0];
+          }
         }
       }
     }
@@ -56,6 +58,8 @@ export const candidateAdd = {
   controller: CandidateAddController,
   bindings: {
     elections: '<',
+    noElectionChoice: '<',
+    showElectionSelect: '<',
     onSave: '&',
     onCancel: '&'
   }

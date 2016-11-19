@@ -11,7 +11,7 @@
 		<button ng-click="$ctrl.addCandidateShow()">Add Candidate</button>
 	</div>
 	<div ng-show="$ctrl.showAddPanel">
-		<candidate-add on-save="$ctrl.addCandidateOnSave(candidateData)" on-cancel="$ctrl.addCandidateOnCancel()" elections="$ctrl.elections">
+		<candidate-add on-save="$ctrl.addCandidateOnSave(candidateData)" on-cancel="$ctrl.addCandidateOnCancel()" elections="$ctrl.elections" show-election-select="$ctrl.addCandidateElections()" no-election-choice="$ctrl.noElectionChoice">
 		</candidate-add>
 	</div>
 </div>
