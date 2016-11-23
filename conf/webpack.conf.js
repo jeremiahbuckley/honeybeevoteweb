@@ -46,7 +46,7 @@ module.exports = {
         ]
       },
       {
-        test: /\.(eot|woff|woff2|ttf|png|jpe?g|gif)(\?\S*)?$/,
+        test: /\.(eot|woff|woff2|ttf|png|jpe?g|gif|ico)(\?\S*)?$/,
         loader: 'url?limit=100000@name=[name][ext]'
       },
       {
