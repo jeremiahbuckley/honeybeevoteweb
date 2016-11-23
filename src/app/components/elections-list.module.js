@@ -1,5 +1,3 @@
-'use strict';
-
 import angular from 'angular';
 
 import {electionsList} from './elections-list.component.js';
